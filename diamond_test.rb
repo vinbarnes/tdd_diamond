@@ -3,6 +3,10 @@ require "minitest/autorun"
 require "diamond"
 
 describe Diamond do
+  it "is hooked up" do
+    assert_equal 3, 2+1
+  end
+
   it "can build a diamond for A" do
     exp = "A"
     assert_equal exp, Diamond.new("A").to_s
