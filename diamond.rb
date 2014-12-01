@@ -8,7 +8,8 @@ class Diamond
   end
 
   def rows
-    letters.map {|l| row(l) } + letters.reverse[1..-1].map {|l| row(l)}
+    top_rows = letters.map {|l| row(l) }
+    top_rows + top_rows.reverse[1..-1]
   end
 
   def row_without_padding(letter)
