@@ -8,16 +8,34 @@ class Diamond
   end
 
   def rows
-    @rows ||= build_rows
+    letters.map {|l| row(l) } + letters.reverse[1..-1].map {|l| row(l)}
   end
 
-  def build_rows
-    if target == "A"
-      [letters]
+  def row_without_padding(letter)
+    unless letter == "A"
+      "%c%#{internal_padding(letter) + 1}c" % [letter, letter]
+    else
+      "A"
     end
   end
 
-  def to_a
-    rows
+  def internal_padding(letter)
+    if ALPHABET.index(letter) > 0
+      ALPHABET.index(letter) + (ALPHABET.index(letter) - 1)
+    else
+      0
+    end
+  end
+
+  def row(letter)
+    row_without_padding(letter).center(width)
+  end
+
+  def width
+    (ALPHABET.index(target) * 2) + 1
+  end
+
+  def to_s
+    rows.join("\n")
   end
 end
