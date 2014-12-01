@@ -19,9 +19,13 @@ class Diamond
     end
   end
 
+  def letter_index(letter)
+    ALPHABET.index(letter)
+  end
+
   def internal_padding(letter)
-    if ALPHABET.index(letter) > 0
-      ALPHABET.index(letter) + (ALPHABET.index(letter) - 1)
+    if letter_index(letter) > 0
+      letter_index(letter) + (letter_index(letter) - 1)
     else
       0
     end
@@ -32,7 +36,7 @@ class Diamond
   end
 
   def width
-    (ALPHABET.index(target) * 2) + 1
+    (letter_index(target) * 2) + 1
   end
 
   def to_s
